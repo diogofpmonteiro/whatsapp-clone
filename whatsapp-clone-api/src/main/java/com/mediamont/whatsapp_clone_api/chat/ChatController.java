@@ -32,5 +32,5 @@ public class ChatController {
         return ResponseEntity.ok(chatService.getChatsByRecipientId(authentication));
     }
 
-    
+
 }
