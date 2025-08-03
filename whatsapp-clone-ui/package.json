@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "api-gen": "ng-openapi-gen --input ./src/openapi/openapi.json --output ./src/app/services"
   },
   "private": true,
   "dependencies": {
@@ -19,7 +20,13 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@fortawesome/fontawesome-free": "^7.0.0",
+    "bootstrap": "^5.3.7",
+    "keycloak-js": "^26.2.0",
+    "ng-openapi-gen": "^0.53.0",
+    "quill": "^2.0.3",
     "rxjs": "~7.8.0",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
