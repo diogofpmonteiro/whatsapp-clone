@@ -1,13 +1,19 @@
-import { ApplicationConfig, provideAppInitializer } from '@angular/core';
+import {ApplicationConfig, inject, provideAppInitializer} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from "@angular/common/http";
+import {KeycloakService} from "./utils/keycloak/keycloak.service";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    provideAppInitializer()
+    provideAppInitializer(() => {
+      const initFn = ((key: KeycloakService) => {
+        return () => key.init();
+      })(inject(KeycloakService));
+      return initFn();
+    })
   ]
 };
