@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/whatsapp-clone.iml" filepath="$PROJECT_DIR$/.idea/whatsapp-clone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/whatsapp-clone-ui/whatsapp-clone-ui.iml" filepath="$PROJECT_DIR$/whatsapp-clone-ui/whatsapp-clone-ui.iml" />
     </modules>
   </component>
 </project>
