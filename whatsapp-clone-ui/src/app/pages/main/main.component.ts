@@ -16,7 +16,8 @@ import {ChatService} from "../../services/services/chat.service";
 export class MainComponent implements OnInit {
   chats: Array<ChatResponse> = [];
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService) {
+  }
 
   ngOnInit(): void {
     this.getAllChats();
@@ -25,9 +26,11 @@ export class MainComponent implements OnInit {
 
   private getAllChats(): void {
     this.chatService.getChatsByRecipient()
-      .subscribe({next: res => {
+      .subscribe({
+        next: res => {
           this.chats = res;
-        }});
+        }
+      });
   }
 
 }

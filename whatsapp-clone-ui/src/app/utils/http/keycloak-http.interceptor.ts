@@ -3,7 +3,7 @@ import {inject} from "@angular/core";
 import {KeycloakService} from "../keycloak/keycloak.service";
 
 export const keycloakHttpInterceptor: HttpInterceptorFn = (req, next) => {
-  const keycloakService: KeycloakService = inject(keycloakHttpInterceptor);
+  const keycloakService: KeycloakService = inject(KeycloakService);
   const token: string | undefined = keycloakService.keycloak.token;
   if (token) {
     const authReq = req.clone({
