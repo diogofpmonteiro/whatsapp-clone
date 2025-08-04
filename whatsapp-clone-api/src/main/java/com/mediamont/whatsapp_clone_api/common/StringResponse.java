@@ -13,6 +13,5 @@ import lombok.Builder;
 @NoArgsConstructor
 @Builder
 public class StringResponse {
-
     private String response;
 }

@@ -16,9 +16,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseAuditingEntity {
@@ -30,5 +30,4 @@ public class BaseAuditingEntity {
     @LastModifiedDate
     @Column(name = "last_modified_date", insertable = false)
     private LocalDateTime lastModifiedDate;
-
 }

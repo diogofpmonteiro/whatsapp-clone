@@ -1,9 +1,9 @@
 package com.mediamont.whatsapp_clone_api.file;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,9 +27,7 @@ public class FileService {
     public String saveFile(
             @NonNull MultipartFile sourceFile,
             @NonNull String userId) {
-        final String fileUploadSubPath = fileUploadPath + separator + userId;
-
-
+        final String fileUploadSubPath = "users" + separator + userId;
         return uploadFile(sourceFile, fileUploadSubPath);
     }
 
@@ -38,6 +36,7 @@ public class FileService {
             @NonNull String fileUploadSubPath) {
         final String finalUploadPath = fileUploadPath + separator + fileUploadSubPath;
         File targetFolder = new File(finalUploadPath);
+
         if (!targetFolder.exists()) {
             boolean folderCreated = targetFolder.mkdirs();
             if (!folderCreated) {
@@ -47,11 +46,11 @@ public class FileService {
         }
 
         final String fileExtension = getFileExtension(sourceFile.getOriginalFilename());
-        final String targetFilePath = finalUploadPath + separator + currentTimeMillis() + fileExtension;
+        final String targetFilePath = finalUploadPath + separator + currentTimeMillis() + "." + fileExtension;
         Path targetPath = Paths.get(targetFilePath);
         try {
             Files.write(targetPath, sourceFile.getBytes());
-            log.info("File saved to {}", targetPath);
+            log.info("File saved to: {}", targetPath);
             return targetFilePath;
         } catch (IOException e) {
             log.error("File was not saved", e);

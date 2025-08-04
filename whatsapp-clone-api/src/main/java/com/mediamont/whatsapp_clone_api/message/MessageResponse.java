@@ -23,5 +23,4 @@ public class MessageResponse {
     private String recipientId;
     private LocalDateTime createdAt;
     private byte[] media;
-
 }

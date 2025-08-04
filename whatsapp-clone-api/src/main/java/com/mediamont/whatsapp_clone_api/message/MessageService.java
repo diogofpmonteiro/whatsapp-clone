@@ -23,8 +23,8 @@ public class MessageService {
     private final MessageRepository messageRepository;
     private final ChatRepository chatRepository;
     private final MessageMapper mapper;
-    private final FileService fileService;
     private final NotificationService notificationService;
+    private final FileService fileService;
 
     public void saveMessage(MessageRequest messageRequest) {
         Chat chat = chatRepository.findById(messageRequest.getChatId())
@@ -47,7 +47,7 @@ public class MessageService {
                 .senderId(messageRequest.getSenderId())
                 .recipientId(messageRequest.getRecipientId())
                 .type(NotificationType.MESSAGE)
-                .chatName(chat.getChatName(messageRequest.getChatId()))
+                .chatName(chat.getTargetChatName(messageRequest.getSenderId()))
                 .build();
 
         notificationService.sendNotification(messageRequest.getRecipientId(), notification);
@@ -62,7 +62,7 @@ public class MessageService {
 
 
     @Transactional
-    public void setMessageToSeen(String chatId, Authentication authentication) {
+    public void setMessagesToSeen(String chatId, Authentication authentication) {
         Chat chat = chatRepository.findById(chatId)
                 .orElseThrow(() -> new EntityNotFoundException("Chat with id " + chatId + " not found"));
 
@@ -114,7 +114,6 @@ public class MessageService {
         if (chat.getSender().getId().equals(authentication.getName())) {
             return chat.getSender().getId();
         }
-
         return chat.getRecipient().getId();
     }
 
@@ -122,8 +121,6 @@ public class MessageService {
         if (chat.getSender().getId().equals(authentication.getName())) {
             return chat.getRecipient().getId();
         }
-
         return chat.getSender().getId();
     }
-
 }

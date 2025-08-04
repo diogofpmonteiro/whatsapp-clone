@@ -22,5 +22,4 @@ public class UserController {
     public ResponseEntity<List<UserResponse>> getAllUsers(Authentication authentication) {
         return ResponseEntity.ok(userService.getAllUsersExceptSelf(authentication));
     }
-
 }

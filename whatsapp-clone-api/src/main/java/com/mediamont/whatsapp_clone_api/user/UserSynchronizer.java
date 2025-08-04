@@ -12,6 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class UserSynchronizer {
+
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 

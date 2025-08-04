@@ -14,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Tag(name = "Chat")
 public class ChatController {
+
     private final ChatService chatService;
 
     @PostMapping
@@ -23,16 +24,14 @@ public class ChatController {
 
         final String chatId = chatService.createChat(senderId, recipientId);
 
-        StringResponse stringResponse = StringResponse.builder()
+        StringResponse response = StringResponse.builder()
                 .response(chatId)
                 .build();
-        return ResponseEntity.ok(stringResponse);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
     public ResponseEntity<List<ChatResponse>> getChatsByRecipient(Authentication authentication) {
         return ResponseEntity.ok(chatService.getChatsByRecipientId(authentication));
     }
-
-
 }

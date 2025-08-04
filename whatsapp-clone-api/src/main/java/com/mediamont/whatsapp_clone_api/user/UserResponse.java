@@ -22,7 +22,4 @@ public class UserResponse {
     private String email;
     private LocalDateTime lastSeen;
     private boolean isOnline;
-
-
-
 }

@@ -14,6 +14,4 @@ public class MessageRequest {
     private String recipientId;
     private String chatId;
     private MessageType messageType;
-
-
 }

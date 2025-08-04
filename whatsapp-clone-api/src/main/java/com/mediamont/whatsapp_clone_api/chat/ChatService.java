@@ -16,8 +16,8 @@ import java.util.Optional;
 public class ChatService {
 
     private final ChatRepository chatRepository;
-    private final ChatMapper mapper;
     private final UserRepository userRepository;
+    private final ChatMapper mapper;
 
     @Transactional(readOnly = true)
     public List<ChatResponse> getChatsByRecipientId(Authentication currentUser) {
@@ -29,6 +29,7 @@ public class ChatService {
     }
 
     public String createChat(String senderId, String recipientId) {
+
         Optional<Chat> existingChat = chatRepository.findChatBySenderAndRecipientId(senderId, recipientId);
         if (existingChat.isPresent()) {
             return existingChat.get().getId();

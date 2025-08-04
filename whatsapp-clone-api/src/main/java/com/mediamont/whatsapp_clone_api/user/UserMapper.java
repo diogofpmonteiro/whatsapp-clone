@@ -7,6 +7,7 @@ import java.util.Map;
 
 @Service
 public class UserMapper {
+
     public User fromTokenAttributes(Map<String, Object> attributes) {
         User user = new User();
 
