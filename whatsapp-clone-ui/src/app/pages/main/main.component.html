@@ -14,9 +14,24 @@
     </div>
     <div class="d-flex w-100">
       <div class="col-3 overflow-x-scroll">
-        <app-chat-list [chats]="chats">
+        <app-chat-list
+          [chats]="chats"
+          (chatSelected)="chatSelected($event)"
+        >
 
         </app-chat-list>
+      </div>
+
+      <div class="col-9">
+        <div class="d-flex flex-column justify-content-between h-100">
+          <div class="gray-bg p-2">
+            <div class="user-img">
+              <img src="assets/images/user.png" alt="" />
+
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </div>
