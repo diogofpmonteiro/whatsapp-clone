@@ -44,6 +44,6 @@ export class ChatListComponent {
   }
 
   selectContact(contact: UserResponse) {
-
+    console.log(contact);
   }
 }

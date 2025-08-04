@@ -5,12 +5,11 @@ import {ChatService} from "../../services/services/chat.service";
 import {KeycloakService} from "../../utils/keycloak/keycloak.service";
 import {MessageService} from "../../services/services/message.service";
 import {MessageResponse} from "../../services/models/message-response";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app',
-  imports: [
-    ChatListComponent
-  ],
+  imports: [ChatListComponent, DatePipe],
   templateUrl: './main.component.html',
   standalone: true,
   styleUrl: './main.component.scss'
@@ -73,5 +72,9 @@ export class MainComponent implements OnInit {
 
   private setMessagesToSeen() {
 
+  }
+
+  isSelfMessage(message: MessageResponse) {
+    return message.senderId === this.keycloakService.userId;
   }
 }
