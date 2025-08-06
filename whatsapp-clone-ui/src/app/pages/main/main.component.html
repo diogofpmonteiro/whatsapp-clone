@@ -3,11 +3,11 @@
   <div class="main-container d-flex">
     <div class="d-flex flex-column justify-content-between align-items-center p-3 gray-bg">
       <div>
-        <i class="fa-solid fa-message cursor-pointer"></i>
+        <i class="fa-solid fa-message"></i>
       </div>
       <div class="d-flex flex-column align-items-center gap-2">
-        <i class="fa-solid fa-user cursor-pointer"></i>
-        <i class="fa-solid fa-door-open cursor-pointer"></i>
+        <i class="fa-solid fa-user cursor-pointer" (click)="userProfile()"></i>
+        <i class="fa-solid fa-door-open cursor-pointer" (click)="logout()"></i>
       </div>
     </div>
     <div class="d-flex w-100">
@@ -50,7 +50,7 @@
                       @if (message.type === 'TEXT') {
                         <span>{{ message.content }}</span>
                       } @else if (message.media) {
-                        <img width="200" class="cursor-pointer" [src]="'data:image/jpg:base64,' + message.media" alt="">
+                        <img width="200" class="cursor-pointer" [src]="'data:image/jpg;base64,' + message.media" alt="">
                       }
                       <small class="text-black-50">
                         {{ message.createdAt | date: 'HH:mm' }}
@@ -73,7 +73,7 @@
                       @if (message.type === 'TEXT') {
                         <span>{{ message.content }}</span>
                       } @else if (message.media) {
-                        <img width="200" class="cursor-pointer" [src]="'data:image/jpg:base64,' + message.media" alt="">
+                        <img width="200" class="cursor-pointer" [src]="'data:image/jpg;base64,' + message.media" alt="">
                       }
                       <small class="text-black-50">{{ message.createdAt | date: 'HH:mm' }}</small>
                     </div>

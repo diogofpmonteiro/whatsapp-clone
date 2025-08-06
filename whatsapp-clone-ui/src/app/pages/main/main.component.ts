@@ -102,7 +102,37 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   uploadMedia(target: EventTarget | null) {
+    const file = this.extractFileFromTarget(target);
+    if (file !== null) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
 
+          const mediaLines = reader.result.toString().split(',')[1];
+
+          this.messageService.uploadMedia({
+            'chat-id': this.selectedChat.id as string,
+            body: {
+              file: file
+            }
+          }).subscribe({
+            next: () => {
+              const message: MessageResponse = {
+                senderId: this.getSenderId(),
+                recipientId: this.getRecipientId(),
+                content: 'Attachment',
+                type: 'IMAGE',
+                state: 'SENT',
+                media: [mediaLines],
+                createdAt: new Date().toString()
+              };
+              this.chatMessages.push(message);
+            }
+          });
+        }
+      }
+      reader.readAsDataURL(file);
+    }
   }
 
   onSelectEmojis(selectedEmoji: any) {
@@ -233,5 +263,16 @@ export class MainComponent implements OnInit, OnDestroy {
         this.chats.unshift(newChat);
       }
     }
+  }
+
+  private extractFileFromTarget(target: EventTarget | null): File | null {
+
+    const htmlInputTarget = target as HTMLInputElement;
+
+    if (target === null || htmlInputTarget.files === null) {
+      return null;
+    }
+
+    return htmlInputTarget.files[0]
   }
 }
